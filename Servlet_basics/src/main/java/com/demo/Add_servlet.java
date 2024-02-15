@@ -1,16 +1,13 @@
  package com.demo;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
-import jakarta.security.auth.message.callback.PrivateKeyCallback.Request;
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/Add_servlet")
 public class Add_servlet extends HttpServlet {
@@ -30,8 +27,11 @@ public class Add_servlet extends HttpServlet {
 //		RequestDispatcher rd = request.getRequestDispatcher("Sq_servlwt");
 //		rd.forward(request, response);
 		
-		HttpSession session = request.getSession();
-		session.setAttribute("k", k);
+//		HttpSession session = request.getSession();
+//		session.setAttribute("k", k);
+		
+		Cookie cookie = new Cookie("k", k + "");
+		response.addCookie(cookie);
 		
 		response.sendRedirect("Second_servlet"); // URL rewriting
 		
